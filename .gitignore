@@ -1,0 +1,13 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# dotenv environment file
+.env
+
+# test files 
+
+save.js
+save2.js
+spot.js
