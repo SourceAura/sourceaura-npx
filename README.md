@@ -13,3 +13,16 @@ Run the following command:
 ```bash
 
 npx sourceaura
+
+
+## To-Do 
+
+- [ ] GitHub Activity
+- [ ] Twitter Activity
+- [ ] Complete Modularization
+- [ ] Complete the CallSign 
+
+- [ ] Polish UX/UI
+- [ ] Make Repository Public
+# - [ ] GitHub Activity
+# - [ ] GitHub Activity

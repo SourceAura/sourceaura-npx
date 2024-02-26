@@ -11,3 +11,6 @@ yarn-error.log
 save.js
 save2.js
 spot.js
+blah.js
+# Yarn configuration
+yarn.lock
