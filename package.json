@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "sourceaura",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "CLI business card for SourceAura",
   "main": "cli.js",
   "bin": {

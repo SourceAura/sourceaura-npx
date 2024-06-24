@@ -7,10 +7,9 @@ yarn-error.log
 .env
 
 # test files 
+note.txt
 
-save.js
-save2.js
-spot.js
-blah.js
-# Yarn configuration
-yarn.lock
+# configuration
+bun.lockb
+package-lock.json
+
