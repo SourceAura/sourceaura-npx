@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "sourceaura",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "CLI business card for SourceAura",
   "main": "cli.js",
   "bin": {
@@ -13,7 +13,7 @@
   "author": "sourceaura <sourceaura@proton.me",
   "license": "CC0",
   "dependencies": {
-    "ascii-art": "^2.8.5",
+    "ascii-art": "^1.5.1",
     "axios": "^1.6.7",
     "boxen": "^7.1.1",
     "chalk": "^5.3.0",
@@ -23,6 +23,7 @@
     "fs": "^0.0.1-security",
     "gradient-string": "^2.0.2",
     "inquirer": "^9.2.15",
+    "moment-timezone": "^0.5.45",
     "node-fetch": "^3.3.2",
     "open": "^10.0.3",
     "ora": "^8.0.1",
@@ -30,6 +31,6 @@
     "readline": "^1.3.0",
     "request": "^2.88.2",
     "spotify-web-api-node": "^5.0.2",
-    "twit": "^2.2.11"
+    "twit": "^1.1.20"
   }
 }

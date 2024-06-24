@@ -1,8 +1,6 @@
-// io.js
 import inquirer from 'inquirer';
-// Define Twitter API credentials from environment variables
-const { TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET, TWITTER_ACCESS_TOKEN, TWITTER_ACCESS_TOKEN_SECRET } = process.env;
-
+import axios from 'axios';
+import open from 'open';
 
 // Fetch GitHub activity for a user
 const fetchGitHubActivity = async (username) => {
@@ -28,87 +26,75 @@ const displayGitHubActivity = (events, username) => {
   console.log(`\nGitHub Profile: https://github.com/${username}\n`);
 };
 
-// Function to fetch Twitter activity for a user
-const fetchTwitterActivity = async (username) => {
-  try {
-    const response = await twitter.get('statuses/user_timeline', {
-      screen_name: username,
-      count: 3,
-    });
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching Twitter activity:', error.message);
-    return null;
-  }
-};
-// Function to display Twitter activity
-const displayTwitterActivity = (tweets, username) => {
-  if (!tweets || tweets.length === 0) {
-    console.log('\nNo Twitter activity found.\n');
-    return;
-  }
-  console.log(`\nTwitter activity for @${username}:\n`);
-  tweets.forEach((tweet, index) => {
-    console.log(`${index + 1}. Text: ${tweet.text}, Date: ${new Date(tweet.created_at).toLocaleString()}`);
-  });
-  console.log(`\nTwitter Profile: https://twitter.com/${username}\n`);
+// Function to display the main menu
+const displayMenu = async () => {
+  const mainMenuChoices = [
+    { name: 'GitHub Options', value: 'github' },
+    { name: 'Email me', value: 'email' },
+    { name: 'Exit', value: 'exit' },
+  ];
+
+  const { action } = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'action',
+      message: 'Choose an option:',
+      choices: mainMenuChoices,
+      pageSize: 1,
+    },
+  ]);
+
+  return action;
 };
 
-// Function for user input - output.
+// Function to display the GitHub submenu
+const displayGitHubMenu = async (githubUsername) => {
+  const githubMenuChoices = [
+    { name: 'See recent GitHub activity', value: 'githubActivity' },
+    { name: 'Go to my GitHub page', value: 'openGitHub' },
+    { name: 'Back to main menu', value: 'back' },
+  ];
+
+  const { githubAction } = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'githubAction',
+      message: 'GitHub Options:',
+      choices: githubMenuChoices,
+      pageSize: 1,
+    },
+  ]);
+
+  return githubAction;
+};
+
+// Main function for user input - output
 const io = async () => {
+  const githubUsername = 'SourceAura'; // Replace with desired GitHub username
+
   while (true) {
     try {
-      const { action } = await inquirer.prompt([
-        {
-          type: 'input',
-          name: 'action',
-          message: 'How can I assist you?',
-          prefix: '',
-        },
-      ]);
+      const action = await displayMenu();
 
-      switch (action.trim().toLowerCase()) {
+      switch (action) {
+        case 'github':
+          const githubAction = await displayGitHubMenu(githubUsername);
+          if (githubAction === 'githubActivity') {
+            const githubEvents = await fetchGitHubActivity(githubUsername);
+            displayGitHubActivity(githubEvents, githubUsername);
+          } else if (githubAction === 'openGitHub') {
+            open(`https://github.com/${githubUsername}`);
+          }
+          break;
         case 'email':
-          clear();
-          callsign();
           open('mailto:sourceaura@proton.me');
           console.log('\nOpening email client...\n');
-          break;
-        case 'spotify':
-          clear();
-          callsign();
-          open('https://open.spotify.com/user/12161931859');
-          console.log('\nOpening Spotify profile...\n');
-          break;
-        case 'github':
-          const githubUsername = 'SourceAura'; // Replace with desired GitHub username
-          const githubEvents = await fetchGitHubActivity(githubUsername);
-          clear();
-          callsign();
-          displayGitHubActivity(githubEvents, githubUsername);
-          break;
-        case 'twitter':
-          const twitterUsername = 'SourceAura'; // Replace with desired Twitter username
-          const tweets = await fetchTwitterActivity(twitterUsername);
-          displayTwitterActivity(tweets, twitterUsername);
-          break;
-        case 'help':
-          clear();
-          callsign();
-          displayHelpMenu();
-          break;
-        case 'back':
-          clear();
-          console.log('\nBack to main menu...');
-          callsign();
           break;
         case 'exit':
           console.log('\nExiting...');
           process.exit(0);
         default:
-          clear();
-          callsign();
-          console.log('\nInvalid command! Type "help" for available commands.\n');
+          console.log('\nInvalid command! Please choose a valid option.\n');
           break;
       }
     } catch (error) {
