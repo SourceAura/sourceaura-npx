@@ -19,9 +19,9 @@ const tag = `
 // Gradient effect for text
 const gradientEffect = gradient([
   { color: '#0aa39f', pos: 0 }, 
-  { color: '#da6c80', pos: 0.6 },
-  { color: '#ff5e62', pos: 0.3 },
-  { color: '#ff9966', pos: 0.2 },
+  { color: '#da6c80', pos: 0.4 },
+  { color: '#ff5e62', pos: 0.4 },
+  { color: '#ff9966', pos: 0.7 },
   { color: '#9966ff', pos: 0.8 },
   { color: '#9966ff', pos: 0.9 },
   { color: '#542D6A', pos: 1 },
