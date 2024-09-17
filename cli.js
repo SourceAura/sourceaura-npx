@@ -2,7 +2,6 @@
 
 // Importing required modules
 import { config } from 'dotenv';
-// Modules
 import io from './io.js';
 import callsign from './callsign.js';
 
