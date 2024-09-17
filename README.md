@@ -17,12 +17,10 @@ npx sourceaura
 
 ## To-Do 
 
-- [ ] GitHub Activity
-- [ ] Twitter Activity
-- [ ] Complete Modularization
-- [ ] Complete the CallSign 
+- [ x ] GitHub Activity
+- [ x ] Twitter Activity
+- [ x ] Complete Modularization
+- [ x ] Complete the CallSign 
 
 - [ ] Polish UX/UI
-- [ ] Make Repository Public
-# - [ ] GitHub Activity
-# - [ ] GitHub Activity
+- [ x ] Make Repository Public
